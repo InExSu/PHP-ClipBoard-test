@@ -1,0 +1,1 @@
+C:\PHP\php.exe -n -r "require '%~dp0\clip_Test.php'; test_From_ClipBoard_and_Put_Back();"
