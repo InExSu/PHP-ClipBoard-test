@@ -45,38 +45,30 @@ function test_From_ClipBoard_and_Put_Back_Test() {
     clipBoard_Set($code);
     $result = test_From_ClipBoard_and_Put_Back() . PHP_EOL;
     assert ($result == "function z_Test(){\r\necho 'z_Test()';\r\n\r\n\$result = z();\r\n}\r\n\r\n");
-
 }
 
 function test_String_Run_Test(){
     $name = '';
     $args = '';
 
+    /** @noinspection PhpUnusedLocalVariableInspection */
     $result = test_String_Run($name, $args);
 }
 
 function args_Type_NO_Test(){
     $args = 'string $arg1';
 
+    /** @noinspection PhpUnusedLocalVariableInspection */
     $result = args_Type_NO($args);
 }
 
-function string_Right_from_Separator_If_Test(){
-    echo 'string_Right_from_Separator_If_Test($hiStack,$needle)';
-    $hiStack = ';';
-    $needle = ';';
-
-    $result = string_Right_from_Separator_If($hiStack,$needle);
-}
-
 test_From_ClipBoard_and_Put_Back_Test();
+test_String_Run_Test();
 
-// string_Right_from_Separator_If_Test();
-//
-// args_Type_NO_Test();
-//
-// func_Args_Test();
-// func_Name_Test();
-//
-// clipBoard_Get_Test();
-// clipBoard_Set_Test();
+args_Type_NO_Test();
+
+func_Args_Test();
+func_Name_Test();
+
+clipBoard_Get_Test();
+clipBoard_Set_Test();
