@@ -8,6 +8,7 @@ vendor/
 /composer.phar
 /config.php
 /credential*.json
+/error.log
 /gh.bat
 /token*.json
 /web_Hook.url

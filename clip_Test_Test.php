@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-require_once __DIR__ .'/clip_Test.php';
+require_once __DIR__ . '/clip_Test.php';
 
 function clipBoard_Get_Test() {
     clipBoard_Set('ИЗ буфера');
@@ -39,15 +39,15 @@ function test_From_ClipBoard_and_Put_Back_Test() {
     $code = 'function z($arg1, string $arg2){';
     clipBoard_Set($code);
     $result = test_From_ClipBoard_and_Put_Back() . PHP_EOL;
-    assert ($result == "function z_Test(){\r\necho 'z_Test(\$arg1,\$arg2)';\r\n\$arg1 = '';\r\n\$arg2 = '';\r\n\r\n\$result = z(\$arg1,\$arg2);\r\n}\r\n\r\n");
+    assert($result == "function z_Test(){\r\necho 'z_Test(\$arg1,\$arg2)';\r\n\$arg1 = '';\r\n\$arg2 = '';\r\n\r\n\$result = z(\$arg1,\$arg2);\r\n}\r\n\r\n");
 
     $code = 'function z(){';
     clipBoard_Set($code);
     $result = test_From_ClipBoard_and_Put_Back() . PHP_EOL;
-    assert ($result == "function z_Test(){\r\necho 'z_Test()';\r\n\r\n\$result = z();\r\n}\r\n\r\n");
+    assert($result == "function z_Test(){\r\necho 'z_Test()';\r\n\r\n\$result = z();\r\n}\r\n\r\n");
 }
 
-function test_String_Run_Test(){
+function test_String_Run_Test() {
     $name = '';
     $args = '';
 
@@ -55,7 +55,7 @@ function test_String_Run_Test(){
     $result = test_String_Run($name, $args);
 }
 
-function args_Type_NO_Test(){
+function args_Type_NO_Test() {
     $args = 'string $arg1';
 
     /** @noinspection PhpUnusedLocalVariableInspection */
