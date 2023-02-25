@@ -92,7 +92,6 @@ function clipBoard_Set(string $new): bool {
     return (pclose($clip) === 0 && strlen($new) === $written);
 }
 
-
 /** в функции теста создать строку запуска  */
 function test_String_Run(string $name,
                          string $args): string {

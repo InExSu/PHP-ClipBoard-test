@@ -39,14 +39,15 @@ function test_From_ClipBoard_and_Put_Back_Test() {
     $code = 'function z($arg1, string $arg2){';
     clipBoard_Set($code);
     $result = test_From_ClipBoard_and_Put_Back() . PHP_EOL;
-    // echo_Old_2_New(__FUNCTION__, $code, $result);
+    assert ($result == "function z_Test(){\r\necho 'z_Test(\$arg1,\$arg2)';\r\n\$arg1 = '';\r\n\$arg2 = '';\r\n\r\n\$result = z(\$arg1,\$arg2);\r\n}\r\n\r\n");
 
-    // $code = 'function z(){';
-    // clipBoard_Set($code);
-    // $result = test_From_ClipBoard_and_Put_Back() . PHP_EOL;
-    // // echo_Old_2_New(__FUNCTION__, $code, $result);
+    $code = 'function z(){';
+    clipBoard_Set($code);
+    $result = test_From_ClipBoard_and_Put_Back() . PHP_EOL;
+    assert ($result == "function z_Test(){\r\necho 'z_Test()';\r\n\r\n\$result = z();\r\n}\r\n\r\n");
 
 }
+
 function test_String_Run_Test(){
     $name = '';
     $args = '';
@@ -68,13 +69,14 @@ function string_Right_from_Separator_If_Test(){
     $result = string_Right_from_Separator_If($hiStack,$needle);
 }
 
-string_Right_from_Separator_If_Test();
-
-args_Type_NO_Test();
-
-func_Args_Test();
-func_Name_Test();
 test_From_ClipBoard_and_Put_Back_Test();
 
-clipBoard_Get_Test();
-clipBoard_Set_Test();
+// string_Right_from_Separator_If_Test();
+//
+// args_Type_NO_Test();
+//
+// func_Args_Test();
+// func_Name_Test();
+//
+// clipBoard_Get_Test();
+// clipBoard_Set_Test();
