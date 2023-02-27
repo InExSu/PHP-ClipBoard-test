@@ -9,11 +9,11 @@ function test_From_ClipBoard_and_Put_Back(): string {
 
     $buff = clipBoard_Get();
 
+    $buff = str_replace('\r\n','',$buff);
+
     $name = 'function ' . func_Name($buff) . '_Test(){' . PHP_EOL;
 
-    preg_match('/\((.*?)\)/',
-               $buff,
-               $arr);
+    preg_match('/\((.*?)\)/', $buff, $arr);
 
     $args = (count($arr) == 2) ?
         implode_If('',
