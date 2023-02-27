@@ -1,5 +1,4 @@
 <?php
-declare(strict_types=1);
 
 require_once __DIR__ . '/clip_Test.php';
 
@@ -45,6 +44,12 @@ function test_From_ClipBoard_and_Put_Back_Test() {
     clipBoard_Set($code);
     $result = test_From_ClipBoard_and_Put_Back() . PHP_EOL;
     assert($result == "function z_Test(){\r\necho 'z_Test()';\r\n\r\n\$result = z();\r\n}\r\n\r\n");
+    
+    $code = 'function array_Row_Fill(\r\n    array $arr_Sour,\r\n    array &$arr_Dest,\r\n    int $row,\r\n    string $sku_Title,\r\n    string $sku_Value,\r\n    array $arr_ListLabels_Title): void {\r\n';
+    clipBoard_Set($code);
+    $result = test_From_ClipBoard_and_Put_Back() . PHP_EOL;
+    assert($result == "function z_Test(){\r\necho 'z_Test()';\r\n\r\n\$result = z();\r\n}\r\n\r\n");
+
 }
 
 function test_String_Run_Test() {
