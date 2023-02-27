@@ -68,6 +68,7 @@ function args_Type_NO_Test() {
     $result = args_Type_NO($args);
 }
 
+// test_From_ClipBoard_and_Put_Back();
 test_From_ClipBoard_and_Put_Back_Test();
 test_String_Run_Test();
 

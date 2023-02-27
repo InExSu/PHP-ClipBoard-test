@@ -7,9 +7,7 @@ declare(strict_types=1);
  */
 function test_From_ClipBoard_and_Put_Back(): string {
 
-    $buff = clipBoard_Get();
-
-    $buff = str_replace('\r\n','',$buff);
+    $buff = preg_replace('/\s+/', ' ', clipBoard_Get());
 
     $name = 'function ' . func_Name($buff) . '_Test(){' . PHP_EOL;
 
