@@ -40,17 +40,16 @@ function test_From_ClipBoard_and_Put_Back_Test() {
     clipBoard_Set($code);
     $result = test_From_ClipBoard_and_Put_Back() . PHP_EOL;
     assert($result == "function z_Test(){\r\necho 'z_Test(\$arg1,\$arg2)';\r\n\$arg1 = '';\r\n\$arg2 = '';\r\n\r\n\$result = z(\$arg1,\$arg2);\r\n}\r\n\r\n");
-    
+
     $code = 'function z(){';
     clipBoard_Set($code);
     $result = test_From_ClipBoard_and_Put_Back() . PHP_EOL;
     assert($result == "function z_Test(){\r\necho 'z_Test()';\r\n\r\n\$result = z();\r\n}\r\n\r\n");
     
-    $code = 'function array_Row_Fill(\r\n    array $arr_Sour,\r\n    array &$arr_Dest,\r\n    int $row,\r\n    string $sku_Title,\r\n    string $sku_Value,\r\n    array $arr_ListLabels_Title): void {\r\n';
+    $code = 'function array_Row_Fill(' . PHP_EOL . '    array $arr_Sour,' . PHP_EOL . '    array &$arr_Dest,' . PHP_EOL . '    int $row,' . PHP_EOL . '    string $sku_Title,' . PHP_EOL . '    string $sku_Value,' . PHP_EOL . '    array $arr_ListLabels_Title): void {' . PHP_EOL;
     clipBoard_Set($code);
     $result = test_From_ClipBoard_and_Put_Back() . PHP_EOL;
-    assert($result == "function z_Test(){\r\necho 'z_Test()';\r\n\r\n\$result = z();\r\n}\r\n\r\n");
-
+    assert($result == "function array_Row_Fill_Test(){\r\necho 'z_Test()';\r\n\r\n\$result = z();\r\n}\r\n\r\n");
 }
 
 function test_String_Run_Test() {
@@ -68,7 +67,7 @@ function args_Type_NO_Test() {
     $result = args_Type_NO($args);
 }
 
-// test_From_ClipBoard_and_Put_Back();
+test_From_ClipBoard_and_Put_Back();
 test_From_ClipBoard_and_Put_Back_Test();
 test_String_Run_Test();
 

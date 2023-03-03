@@ -1,16 +1,20 @@
 <?php
-declare(strict_types=1);
-
 /**
  * создать тест функции из буфера обмена и положить обратно в буфер
  * для запуска из консоли сначала ищется php-cli.ini, затем php.ini
+ * TODO не делать $result = для функций void
  */
+ 
+declare(strict_types=1);
+
 function test_From_ClipBoard_and_Put_Back(): string {
 
+    // пробелов подряд не > 1
     $buff = preg_replace('/\s+/', ' ', clipBoard_Get());
 
     $name = 'function ' . func_Name($buff) . '_Test(){' . PHP_EOL;
 
+    // массив аругментов
     preg_match('/\((.*?)\)/', $buff, $arr);
 
     $args = (count($arr) == 2) ?
