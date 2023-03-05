@@ -4,7 +4,7 @@
  * для запуска из консоли сначала ищется php-cli.ini, затем php.ini
  * TODO не делать $result = для функций void
  */
- 
+
 declare(strict_types=1);
 
 function test_From_ClipBoard_and_Put_Back(): string {
@@ -115,7 +115,8 @@ function test_String_Echo(string $name,
 
     return 'echo \'' .
            $name . '(' .
-           $args_Type_NO . ')\';';
+           // $args_Type_NO . ')\';';
+           $args_Type_NO . ')\' . PHP_EOL;';
 }
 
 /**

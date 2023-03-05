@@ -39,12 +39,13 @@ function test_From_ClipBoard_and_Put_Back_Test() {
     $code = 'function z($arg1, string $arg2){';
     clipBoard_Set($code);
     $result = test_From_ClipBoard_and_Put_Back() . PHP_EOL;
-    assert($result == "function z_Test(){\r\necho 'z_Test(\$arg1,\$arg2)';\r\n\$arg1 = '';\r\n\$arg2 = '';\r\n\r\n\$result = z(\$arg1,\$arg2);\r\n}\r\n\r\n");
+    // "function z_Test(){\r\necho 'z_Test(\$arg1,\$arg2)';\r\n\$arg1 = '';\r\n\$arg2 = '';\r\n\r\n\$result = z(\$arg1,\$arg2);\r\n}\r\n\r\n");
+    assert($result == "function z_Test(){\r\necho 'z_Test(\$arg1,\$arg2)' . PHP_EOL;\r\n\$arg1 = '';\r\n\$arg2 = '';\r\n\r\n\$result = z(\$arg1,\$arg2);\r\n}\r\n\r\n");
 
     $code = 'function z(){';
     clipBoard_Set($code);
     $result = test_From_ClipBoard_and_Put_Back() . PHP_EOL;
-    assert($result == "function z_Test(){\r\necho 'z_Test()';\r\n\r\n\$result = z();\r\n}\r\n\r\n");
+    assert($result == "function z_Test(){\r\necho 'z_Test()' . PHP_EOL;\r\n\r\n\$result = z();\r\n}\r\n\r\n");
     
     $code = 'function array_Row_Fill(' . PHP_EOL . '    array $arr_Sour,' . PHP_EOL . '    array &$arr_Dest,' . PHP_EOL . '    int $row,' . PHP_EOL . '    string $sku_Title,' . PHP_EOL . '    string $sku_Value,' . PHP_EOL . '    array $arr_ListLabels_Title): void {' . PHP_EOL;
     clipBoard_Set($code);
@@ -62,9 +63,7 @@ function test_String_Run_Test() {
 
 function args_Type_NO_Test() {
     $args = 'string $arg1';
-
-    /** @noinspection PhpUnusedLocalVariableInspection */
-    $result = args_Type_NO($args);
+    args_Type_NO($args);
 }
 
 test_From_ClipBoard_and_Put_Back();
@@ -78,3 +77,4 @@ func_Name_Test();
 
 clipBoard_Get_Test();
 clipBoard_Set_Test();
+
