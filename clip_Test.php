@@ -40,13 +40,19 @@ function test_From_ClipBoard_and_Put_Back(): string {
 
     $time = "echo 'time passed = ' . (microtime(true) - \$start) . PHP_EOL;";
 
+    /**
+     * после функции, добавлю код вызова функции
+     */
+    $call = func_Name($buff) . '_Test();';
+
     $code = $name .
             $echo . PHP_EOL .
             $start . PHP_EOL .
             $args . PHP_EOL .
             $run_ . PHP_EOL .
             $time . PHP_EOL .
-            '}' . PHP_EOL;
+            '}' . PHP_EOL .
+            $call . PHP_EOL;
 
     clipBoard_Set($code);
 

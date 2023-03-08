@@ -40,17 +40,17 @@ function test_From_ClipBoard_and_Put_Back_Test() {
     clipBoard_Set($code);
     $result = test_From_ClipBoard_and_Put_Back() . PHP_EOL;
     // "function z_Test(){\r\necho 'z_Test(\$arg1,\$arg2)';\r\n\$arg1 = '';\r\n\$arg2 = '';\r\n\r\n\$result = z(\$arg1,\$arg2);\r\n}\r\n\r\n");
-    assert($result == "function z_Test(){\r\necho 'z_Test(\$arg1,\$arg2)' . PHP_EOL;\r\n\$arg1 = '';\r\n\$arg2 = '';\r\n\r\n\$result = z(\$arg1,\$arg2);\r\n}\r\n\r\n");
+    assert($result == "function z_Test(){\r\necho __FUNCTION__ . PHP_EOL;\r\n\$start = microtime(true);\r\n\$arg1 = '';\r\n\$arg2 = '';\r\n\r\n\$result = z(\$arg1,\$arg2);\r\necho 'time passed = ' . (microtime(true) - \$start) . PHP_EOL;\r\n}\r\nz_Test();\r\n\r\n");
 
     $code = 'function z(){';
     clipBoard_Set($code);
     $result = test_From_ClipBoard_and_Put_Back() . PHP_EOL;
-    assert($result == "function z_Test(){\r\necho 'z_Test()' . PHP_EOL;\r\n\r\n\$result = z();\r\n}\r\n\r\n");
+    assert($result == "function z_Test(){\r\necho __FUNCTION__ . PHP_EOL;\r\n\$start = microtime(true);\r\n\r\n\$result = z();\r\necho 'time passed = ' . (microtime(true) - \$start) . PHP_EOL;\r\n}\r\nz_Test();\r\n\r\n");
 
     $code = 'function array_Row_Fill(' . PHP_EOL . '    array $arr_Sour,' . PHP_EOL . '    array &$arr_Dest,' . PHP_EOL . '    int $row,' . PHP_EOL . '    string $sku_Title,' . PHP_EOL . '    string $sku_Value,' . PHP_EOL . '    array $arr_ListLabels_Title): void {' . PHP_EOL;
     clipBoard_Set($code);
     $result = test_From_ClipBoard_and_Put_Back() . PHP_EOL;
-    assert($result == "function array_Row_Fill_Test(){\r\necho 'z_Test()';\r\n\r\n\$result = z();\r\n}\r\n\r\n");
+    assert($result == "function array_Row_Fill_Test(){\r\necho __FUNCTION__ . PHP_EOL;\r\n\$start = microtime(true);\r\n\$arr_Sour = [];\r\n\$arr_Dest = [];\r\n\$row = 0;\r\n\$sku_Title = '';\r\n\$sku_Value = '';\r\n\$arr_ListLabels_Title = [];\r\n\r\narray_Row_Fill(\$arr_Sour,&\$arr_Dest,\$row,\$sku_Title,\$sku_Value,\$arr_ListLabels_Title);\r\necho 'time passed = ' . (microtime(true) - \$start) . PHP_EOL;\r\n}\r\narray_Row_Fill_Test();\r\n\r\n");
 }
 
 function test_String_Run_Test() {
@@ -75,9 +75,9 @@ function args_Type_NO_Test() {
 }
 
 // test_From_ClipBoard_and_Put_Back();
-// test_From_ClipBoard_and_Put_Back_Test();
-test_String_Run_Test();
+test_From_ClipBoard_and_Put_Back_Test();
 
+// test_String_Run_Test();
 // args_Type_NO_Test();
 //
 // func_Args_Test();
