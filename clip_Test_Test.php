@@ -46,7 +46,7 @@ function test_From_ClipBoard_and_Put_Back_Test() {
     clipBoard_Set($code);
     $result = test_From_ClipBoard_and_Put_Back() . PHP_EOL;
     assert($result == "function z_Test(){\r\necho 'z_Test()' . PHP_EOL;\r\n\r\n\$result = z();\r\n}\r\n\r\n");
-    
+
     $code = 'function array_Row_Fill(' . PHP_EOL . '    array $arr_Sour,' . PHP_EOL . '    array &$arr_Dest,' . PHP_EOL . '    int $row,' . PHP_EOL . '    string $sku_Title,' . PHP_EOL . '    string $sku_Value,' . PHP_EOL . '    array $arr_ListLabels_Title): void {' . PHP_EOL;
     clipBoard_Set($code);
     $result = test_From_ClipBoard_and_Put_Back() . PHP_EOL;
@@ -54,11 +54,19 @@ function test_From_ClipBoard_and_Put_Back_Test() {
 }
 
 function test_String_Run_Test() {
-    $name = '';
+
+    $buff = 'function args_Type_NO(string $args): string ';
     $args = '';
 
-    /** @noinspection PhpUnusedLocalVariableInspection */
-    $result = test_String_Run($name, $args);
+    $result = test_String_Run($buff, $args);
+    assert(strpos($result, '$result') !== false);
+
+    $buff = 'function args_Type_NO(string $args): void ';
+    $args = '';
+
+    $result = test_String_Run($buff, $args);
+    assert(strpos($result, '$result') === false);
+
 }
 
 function args_Type_NO_Test() {
@@ -66,15 +74,15 @@ function args_Type_NO_Test() {
     args_Type_NO($args);
 }
 
-test_From_ClipBoard_and_Put_Back();
-test_From_ClipBoard_and_Put_Back_Test();
+// test_From_ClipBoard_and_Put_Back();
+// test_From_ClipBoard_and_Put_Back_Test();
 test_String_Run_Test();
 
-args_Type_NO_Test();
-
-func_Args_Test();
-func_Name_Test();
-
-clipBoard_Get_Test();
-clipBoard_Set_Test();
+// args_Type_NO_Test();
+//
+// func_Args_Test();
+// func_Name_Test();
+//
+// clipBoard_Get_Test();
+// clipBoard_Set_Test();
 

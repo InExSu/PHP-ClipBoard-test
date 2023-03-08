@@ -22,7 +22,10 @@ function test_From_ClipBoard_and_Put_Back(): string {
         implode_If('',
                    $arr);
 
-    $run_ = test_String_Run(func_Name($buff),
+    // $run_ = test_String_Run(func_Name($buff),
+    //                         $args);
+
+    $run_ = test_String_Run($buff,
                             $args);
 
     $echo = "echo __FUNCTION__ . PHP_EOL;";
@@ -99,13 +102,19 @@ function clipBoard_Set(string $new): bool {
 }
 
 /** в функции теста создать строку запуска  */
-function test_String_Run(string $name,
+function test_String_Run(string $buff,
                          string $args): string {
 
     $args_Type_NO = args_Type_NO($args);
 
-    return '$result = ' .
-           $name . '(' .
+    /**
+     * Если явно указан void, то без $result
+     */
+    $result = (strpos($buff, ": void"))
+        ? ''
+        : '$result = ';
+    return $result .
+           func_Name($buff) . '(' .
            $args_Type_NO . ');';
 }
 
