@@ -12,7 +12,7 @@ function test_From_ClipBoard_and_Put_Back(): string {
 
     $name = 'function ' . func_Name($buff) . '_Test(){' . PHP_EOL;
 
-    // массив аругментов
+    // массив аргументов
     preg_match('/\((.*?)\)/', $buff, $arr);
 
     $args = (count($arr) == 2) ?
@@ -20,9 +20,6 @@ function test_From_ClipBoard_and_Put_Back(): string {
                    $arr[1]) :
         implode_If('',
                    $arr);
-
-    // $run_ = test_String_Run(func_Name($buff),
-    //                         $args);
 
     $run_ = test_String_Run($buff,
                             $args);
@@ -40,7 +37,7 @@ function test_From_ClipBoard_and_Put_Back(): string {
     $time = "echo 'time passed = ' . (microtime(true) - \$start) . PHP_EOL;";
 
     /**
-     * после функции, добавлю код вызова функции
+     * после функции, добавляю код вызова функции_теста
      */
     $call = func_Name($buff) . '_Test();';
 
@@ -157,14 +154,11 @@ function arg1_Type_NO(string $pair): string {
                    $arg);
 }
 
-
+/**
+ * вернуть имя функции
+ */
 function func_Name(string $code): string {
-    // $arr = explode('(', $code);
-    // if (count($arr) > 0)
-    //     $arr = explode('Function', $arr[0]);
-    // return (count($arr) > 0) ?
-    //     $arr[0] :
-    //     'function name NOT found';
+
     $arr1 = explode('(',
                     $code);
     return trim(implode_if('',

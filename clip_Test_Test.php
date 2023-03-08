@@ -74,15 +74,15 @@ function args_Type_NO_Test() {
     args_Type_NO($args);
 }
 
-// test_From_ClipBoard_and_Put_Back();
+test_From_ClipBoard_and_Put_Back();
 test_From_ClipBoard_and_Put_Back_Test();
 
-// test_String_Run_Test();
-// args_Type_NO_Test();
-//
-// func_Args_Test();
-// func_Name_Test();
-//
-// clipBoard_Get_Test();
-// clipBoard_Set_Test();
+test_String_Run_Test();
+args_Type_NO_Test();
+
+func_Args_Test();
+func_Name_Test();
+
+clipBoard_Get_Test();
+clipBoard_Set_Test();
 
