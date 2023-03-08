@@ -26,8 +26,12 @@ function test_From_ClipBoard_and_Put_Back(): string {
     $run_ = test_String_Run(func_Name($buff),
                             $args);
 
-    $echo = test_String_Echo(func_Name($buff) . '_Test',
-                             $args);
+    // $echo = test_String_Echo(func_Name($buff) . '_Test',
+    //                          $args);
+
+    $echo = "echo __FUNCTION__ . PHP_EOL;";
+
+    $start = "\$start = microtime(true);";
 
     $args = func_Args(trim($args));
 
@@ -35,10 +39,14 @@ function test_From_ClipBoard_and_Put_Back(): string {
                         '',
                         $args);
 
+    $time = "echo 'time passed = ' . (microtime(true) - \$start) . PHP_EOL;";
+
     $code = $name .
             $echo . PHP_EOL .
+            $start . PHP_EOL .
             $args . PHP_EOL .
             $run_ . PHP_EOL .
+            $time . PHP_EOL .
             '}' . PHP_EOL;
 
     clipBoard_Set($code);
@@ -115,7 +123,6 @@ function test_String_Echo(string $name,
 
     return 'echo \'' .
            $name . '(' .
-           // $args_Type_NO . ')\';';
            $args_Type_NO . ')\' . PHP_EOL;';
 }
 
