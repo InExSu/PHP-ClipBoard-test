@@ -1,7 +1,6 @@
 <?php
 /**
  * создать тест функции из буфера обмена и положить обратно в буфер
- * для запуска из консоли сначала ищется php-cli.ini, затем php.ini
  * TODO не делать $result = для функций void
  */
 
@@ -25,9 +24,6 @@ function test_From_ClipBoard_and_Put_Back(): string {
 
     $run_ = test_String_Run(func_Name($buff),
                             $args);
-
-    // $echo = test_String_Echo(func_Name($buff) . '_Test',
-    //                          $args);
 
     $echo = "echo __FUNCTION__ . PHP_EOL;";
 
@@ -111,19 +107,6 @@ function test_String_Run(string $name,
     return '$result = ' .
            $name . '(' .
            $args_Type_NO . ');';
-}
-
-/**
- * в функции теста создать строку запуска
- */
-function test_String_Echo(string $name,
-                          string $args): string {
-
-    $args_Type_NO = args_Type_NO($args);
-
-    return 'echo \'' .
-           $name . '(' .
-           $args_Type_NO . ')\' . PHP_EOL;';
 }
 
 /**
