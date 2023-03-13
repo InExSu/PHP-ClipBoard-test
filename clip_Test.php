@@ -3,6 +3,8 @@
  * создать тест функции из буфера обмена и положить обратно в буфер
  */
 
+// TODO сделай обработку аргументов со значениями по умолчанию и с &
+
 declare(strict_types=1);
 
 function test_From_ClipBoard_and_Put_Back(): string {
