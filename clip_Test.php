@@ -7,8 +7,8 @@
 
 declare(strict_types=1);
 
-function test_From_ClipBoard_and_Put_Back(): string {
-
+function test_From_ClipBoard_and_Put_Back(): string
+{
     // пробелов подряд не > 1
     $buff = preg_replace('/\s+/', ' ', clipBoard_Get());
 
@@ -36,7 +36,8 @@ function test_From_ClipBoard_and_Put_Back(): string {
                         '',
                         $args);
 
-    $time = "echo 'time passed = ' . (microtime(true) - \$start) . PHP_EOL;";
+//    $time = "echo 'time passed = ' . (microtime(true) - \$start) . PHP_EOL;";
+    $time = "echo 'time passed = ' . number_format(microtime(true) - \$start,  6, '.', ' ') . PHP_EOL;";
 
     /**
      * после функции, добавляю код вызова функции_теста
@@ -44,13 +45,13 @@ function test_From_ClipBoard_and_Put_Back(): string {
     $call = func_Name($buff) . '_Test();';
 
     $code = $name .
-            $echo . PHP_EOL .
-            $start . PHP_EOL .
-            $args . PHP_EOL .
-            $run_ . PHP_EOL .
-            $time . PHP_EOL .
-            '}' . PHP_EOL .
-            $call . PHP_EOL;
+        $echo . PHP_EOL .
+        $start . PHP_EOL .
+        $args . PHP_EOL .
+        $run_ . PHP_EOL .
+        $time . PHP_EOL .
+        '}' . PHP_EOL .
+        $call . PHP_EOL;
 
     clipBoard_Set($code);
 
@@ -61,7 +62,8 @@ function test_From_ClipBoard_and_Put_Back(): string {
     return $code;
 }
 
-function clipBoard_Get(): string {
+function clipBoard_Get(): string
+{
     if (PHP_OS_FAMILY === 'Windows') {
         // works on windows 7 + (PowerShell v2 + )
         // is it -1 or -2 bytes? i think it was -2 on win7 and -1 on win10?
@@ -83,7 +85,8 @@ function clipBoard_Get(): string {
     }
 }
 
-function clipBoard_Set(string $new): bool {
+function clipBoard_Set(string $new): bool
+{
     if (PHP_OS_FAMILY === 'Windows') {
         // works on windows 7 +
         $clip = popen('clip',
@@ -98,7 +101,6 @@ function clipBoard_Set(string $new): bool {
                       'wb');
     } else {
         exit('running on unsupported OS: ' . PHP_OS_FAMILY . ' - only Windows, Linux, and MacOS supported.');
-
     }
     $written = fwrite($clip,
                       $new);
@@ -107,8 +109,8 @@ function clipBoard_Set(string $new): bool {
 
 /** в функции теста создать строку запуска  */
 function test_String_Run(string $buff,
-                         string $args): string {
-
+                         string $args): string
+{
     $args_Type_NO = args_Type_NO($args);
 
     /**
@@ -118,15 +120,15 @@ function test_String_Run(string $buff,
         ? ''
         : '$result = ';
     return $result .
-           func_Name($buff) . '(' .
-           $args_Type_NO . ');';
+        func_Name($buff) . '(' .
+        $args_Type_NO . ');';
 }
 
 /**
  * избавиться от типов
  */
-function args_Type_NO(string $args): string {
-
+function args_Type_NO(string $args): string
+{
     $params = explode(',',
                       $args);
     $params = array_map('trim',
@@ -145,8 +147,8 @@ function args_Type_NO(string $args): string {
 /**
  * избавиться от типа в одном аргументе
  */
-function arg1_Type_NO(string $pair): string {
-
+function arg1_Type_NO(string $pair): string
+{
     $arg = explode(' ',
                    $pair);
 
@@ -159,8 +161,8 @@ function arg1_Type_NO(string $pair): string {
 /**
  * вернуть имя функции
  */
-function func_Name(string $code): string {
-
+function func_Name(string $code): string
+{
     $arr1 = explode('(',
                     $code);
     return trim(implode_if('',
@@ -169,17 +171,15 @@ function func_Name(string $code): string {
 }
 
 /** аргументы инициализировать */
-function func_Args(string $args): string {
-
+function func_Args(string $args): string
+{
     $code = '';
 
     if ($args != '') {
-
         $arr_Comma = explode(',',
                              $args);
 
         foreach ($arr_Comma as $value) {
-
             $pair = explode(' ',
                             trim($value));
 
@@ -189,8 +189,8 @@ function func_Args(string $args): string {
     return $code;
 }
 
-function argument_1(array $pair): string {
-
+function argument_1(array $pair): string
+{
     switch (count($pair)) {
         case 1;
             $code = implode_If('',
@@ -208,8 +208,8 @@ function argument_1(array $pair): string {
 /**
  * вернуть строку инициализации аргумента, в зависимости от типа
  */
-function argument_Init(array $arg): string {
-
+function argument_Init(array $arg): string
+{
     $code = '';
 
     $type = $arg[0];
@@ -239,21 +239,24 @@ function argument_Init(array $arg): string {
 
 function echo_Old_2_New(string $s1,
                         string $s2,
-                        string $s3) {
+                        string $s3)
+{
     echo $s1 . PHP_EOL .
-         'из: ' . $s2 . PHP_EOL .
-         'сделал: ' . PHP_EOL . $s3;
+        'из: ' . $s2 . PHP_EOL .
+        'сделал: ' . PHP_EOL . $s3;
 }
 
 /**
  * implode, если массив
  */
-function implode_If(string $separator, $array_Or_String): string {
+function implode_If(string $separator, $array_Or_String): string
+{
     // если делать через тернарный, то будет Notice: Array to string conversion in
-    if (is_array($array_Or_String))
+    if (is_array($array_Or_String)) {
         return implode_recursive($array_Or_String, $separator);
-    else
+    } else {
         return (string)$array_Or_String;
+    }
 }
 
 /**
@@ -262,26 +265,32 @@ function implode_If(string $separator, $array_Or_String): string {
  * Example of $include_keys output: key, value, key, value, key, value
  *
  * @access  public
- * @param array  $array        multi-dimensional array to recursively implode
+ * @return  string  imploded array
  * @param string $glue         value that glues elements together
  * @param bool   $include_keys include keys before their values
  * @param bool   $trim_all     trim ALL whitespace from string
- * @return  string  imploded array
+ * @param array  $array        multi-dimensional array to recursively implode
  */
-function implode_recursive(array $array, $glue = ',', $include_keys = false, $trim_all = true): string {
+function implode_recursive(array  $array,
+                           string $glue = ',',
+                           bool   $include_keys = false,
+                           bool   $trim_all = true): string
+{
     $glued_string = '';
 
     // Recursively iterates array and adds key/value to glued string
-    array_walk_recursive($array, function ($value, $key) use ($glue, $include_keys, &$glued_string) {
-        $include_keys and $glued_string .= $key . $glue;
-        $glued_string .= $value . $glue;
-    });
+    array_walk_recursive($array,
+        function ($value, $key) use ($glue, $include_keys, &$glued_string)
+        {
+            $include_keys and $glued_string .= $key . $glue;
+            $glued_string .= $value . $glue;
+        });
 
     // Removes last $glue from string
     strlen($glue) > 0 and $glued_string = substr($glued_string, 0, -strlen($glue));
 
     // Trim ALL whitespace
-    $trim_all and $glued_string = preg_replace("/(\s)/ixsm", '', $glued_string);
+    $trim_all and $glued_string = preg_replace("/(\s)/ixm", '', $glued_string);
 
     return (string)$glued_string;
 }
