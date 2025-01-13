@@ -1,21 +1,25 @@
 <?php
+
 declare(strict_types=1);
 
 require_once __DIR__ . '/clip_Test.php';
 
-function clipBoard_Get_Test() {
+function clipBoard_Get_Test()
+{
     clipBoard_Set('ИЗ буфера');
     $result = clipBoard_Get();
     assert($result == 'ИЗ буфера');
 }
 
-function clipBoard_Set_Test() {
+function clipBoard_Set_Test()
+{
     $buff = 'в буфер!';
     clipBoard_Set($buff);
     assert(clipBoard_Get() == $buff);
 }
 
-function func_Name_Test() {
+function func_Name_Test()
+{
     // $code = '';
     //   assert(func_Name($code) == '');
     $code   = 'function z(){';
@@ -24,7 +28,8 @@ function func_Name_Test() {
     assert($result == 'z');
 }
 
-function func_Args_Test() {
+function func_Args_Test()
+{
     $code   = '$args';
     $result = func_Args($code);
     echo_Old_2_New(__FUNCTION__, $code, $result);
@@ -34,7 +39,8 @@ function func_Args_Test() {
     echo_Old_2_New(__FUNCTION__, $code, $result);
 }
 
-function test_From_ClipBoard_and_Put_Back_Test() {
+function test_From_ClipBoard_and_Put_Back_Test()
+{
 
     $code = 'function z($arg1, string $arg2){';
     clipBoard_Set($code);
@@ -53,7 +59,8 @@ function test_From_ClipBoard_and_Put_Back_Test() {
     assert($result == "function array_Row_Fill_Test(){\r\necho __FUNCTION__ . PHP_EOL;\r\n\$start = microtime(true);\r\n\$arr_Sour = [];\r\n\$arr_Dest = [];\r\n\$row = 0;\r\n\$sku_Title = '';\r\n\$sku_Value = '';\r\n\$arr_ListLabels_Title = [];\r\n\r\narray_Row_Fill(\$arr_Sour,&\$arr_Dest,\$row,\$sku_Title,\$sku_Value,\$arr_ListLabels_Title);\r\necho 'time passed = ' . (microtime(true) - \$start) . PHP_EOL;\r\n}\r\narray_Row_Fill_Test();\r\n\r\n");
 }
 
-function test_String_Run_Test() {
+function test_String_Run_Test()
+{
 
     $buff = 'function args_Type_NO(string $args): string ';
     $args = '';
@@ -66,10 +73,10 @@ function test_String_Run_Test() {
 
     $result = test_String_Run($buff, $args);
     assert(strpos($result, '$result') === false);
-
 }
 
-function args_Type_NO_Test() {
+function args_Type_NO_Test()
+{
     $args = 'string $arg1';
     args_Type_NO($args);
 }
@@ -85,4 +92,3 @@ func_Name_Test();
 
 clipBoard_Get_Test();
 clipBoard_Set_Test();
-
